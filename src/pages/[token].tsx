@@ -1,11 +1,14 @@
 import { GetServerSideProps } from 'next';
-import { getDatabase } from './service';
-import { LinkBio } from './types';
-import { createLinkBio } from './utils';
+import { getDatabase } from '@/service';
+import { LinkBio } from '@/types';
+import { createLinkBio } from '@/utils';
 
 export default function Token(props: { linkBio: LinkBio }) {
   const { linkBio } = props
+  if (!linkBio) return
+
   const { title, footer } = linkBio
+
   return (
     <main
       className="flex min-h-screen flex-col items-center justify-between"

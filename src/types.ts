@@ -1,4 +1,4 @@
-type Row = {
+export type Row = {
   object: 'page'
   id: string
   properties: Record<string, object>
