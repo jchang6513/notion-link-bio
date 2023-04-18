@@ -1,8 +1,9 @@
+import { GetServerSideProps } from 'next';
 import { getDatabase } from './service';
 import { LinkBio } from './types';
 import { createLinkBio } from './utils';
 
-export default function Home(props: { linkBio: LinkBio }) {
+export default function Token(props: { linkBio: LinkBio }) {
   const { linkBio } = props
   const { title, footer } = linkBio
   return (
@@ -60,9 +61,14 @@ export default function Home(props: { linkBio: LinkBio }) {
   )
 }
 
-export async function getServerSideProps() {
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const { params = {} } = ctx
+  const { token = '' } = params
+
+  if (typeof token !== 'string' || !token) return { props: {} }
+
   const results = await getDatabase(
-    process.env.DB_ID || '',
+    token,
     process.env.NOTION_INTEGRATION_SECRET || ''
   )
 
