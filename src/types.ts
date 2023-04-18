@@ -6,9 +6,9 @@ export type Row = {
 
 export type DataBase = Row[]
 
-export type Type = 'title' | 'background' | 'link' | 'footer'
+export type Type = 'header' | 'background' | 'link' | 'footer'
 
-export type Title = {
+export type Header = {
   id: string
   label: string
   imageUrl: string
@@ -37,7 +37,7 @@ export type Footer = {
 }
 
 export type LinkBio = {
-  title: Title
+  title: Header
   background: Background
   links: Link[]
   footer: Footer[]

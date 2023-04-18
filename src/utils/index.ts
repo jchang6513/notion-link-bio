@@ -1,5 +1,5 @@
 import get from 'lodash/get';
-import { Background, DataBase, Footer, Link, LinkBio, Row, Title, Type } from '@/types';
+import { Background, DataBase, Footer, Link, LinkBio, Row, Header, Type } from '@/types';
 
 const getType = (result: Row) => get<object, string, Type>(result, 'properties.type.select.name', 'link')
 
@@ -9,7 +9,7 @@ const getImageUrl = (result: Row) => get<object, string, string>(result, 'proper
 
 const getPriority = (result: Row) => Number(get<object, string, string>(result, 'properties.priority.number', '0'))
 
-const getTitle = (result: Row) => ({
+const getHeader = (result: Row) => ({
   id: result.id,
   label: getLabel(result),
   imageUrl: getImageUrl(result),
@@ -38,7 +38,7 @@ const getFooter = (result: Row) => ({
 })
 
 export const createLinkBio = (results: DataBase): LinkBio => {
-  let title: Title = {} as Title
+  let title: Header = {} as Header
   let background: Background = {} as Background
   let links: Link[] = []
   let footer: Footer[] = []
@@ -47,9 +47,9 @@ export const createLinkBio = (results: DataBase): LinkBio => {
     const type = getType(result)
 
     switch (type) {
-      case 'title':
+      case 'header':
         if (!title.priority || title.priority < getPriority(result)) {
-          title = getTitle(result)
+          title = getHeader(result)
         }
         break;
       case 'background':
