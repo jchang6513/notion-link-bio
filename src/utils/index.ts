@@ -1,5 +1,14 @@
 import get from 'lodash/get';
+import dayjs from 'dayjs';
+import isBetween from 'dayjs/plugin/isBetween';
+import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
+import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
+
 import { Background, DataBase, Footer, Link, LinkBio, Row, Header, Type } from '@/types';
+
+dayjs.extend(isBetween)
+dayjs.extend(isSameOrAfter)
+dayjs.extend(isSameOrBefore)
 
 const getType = (result: Row) => get<object, string, Type>(result, 'properties.type.select.name', 'link')
 
@@ -8,6 +17,10 @@ const getLabel = (result: Row) => get<object, string, string>(result, 'propertie
 const getImageUrl = (result: Row) => get<object, string, string>(result, 'properties.image.files[0].file.url', '')
 
 const getPriority = (result: Row) => Number(get<object, string, string>(result, 'properties.priority.number', '0'))
+
+const getStartFrom = (result: Row) => get<object, string, string>(result, 'properties[\'start from\'].date.start', '')
+
+const getEndAt = (result: Row) => get<object, string, string>(result, 'properties[\'end at\'].date.start', '')
 
 const getHeader = (result: Row) => ({
   id: result.id,
@@ -37,6 +50,21 @@ const getFooter = (result: Row) => ({
   priority: getPriority(result),
 })
 
+const isInSchedule = (result: Row) => {
+  const startFrom = getStartFrom(result)
+  const endAt = getEndAt(result)
+
+  if (startFrom && endAt) {
+    return dayjs().isBetween(startFrom, endAt)
+  } else if (startFrom) {
+    return dayjs().isSameOrAfter(startFrom)
+  } else if (endAt) {
+    return dayjs().isSameOrBefore(endAt)
+  }
+
+  return true
+}
+
 export const createLinkBio = (results: DataBase): LinkBio => {
   let title: Header = {} as Header
   let background: Background = {} as Background
@@ -44,6 +72,8 @@ export const createLinkBio = (results: DataBase): LinkBio => {
   let footer: Footer[] = []
 
   results.forEach((result) => {
+    if (!isInSchedule(result)) return
+
     const type = getType(result)
 
     switch (type) {

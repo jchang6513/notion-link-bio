@@ -7,10 +7,10 @@ export const FooterComp = ({ footer }: { footer: Footer[] }) => {
     <div className="flex justify-center mt-12">
       {footer?.map((item) => (
         item.imageUrl && (
-          <a key={item.id} href={item.url} target="_blank">
+          <a key={item.id} href={item.url} target="_blank" className="mr-6 last:mr-0">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              className="h-6 w-6 mr-6 hover:scale-125"
+              className="h-6 w-6 hover:scale-125"
               src={item.imageUrl}
               alt="link.image"
             />
