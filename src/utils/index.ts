@@ -22,32 +22,45 @@ const getStartFrom = (result: Row) => get<object, string, string>(result, 'prope
 
 const getEndAt = (result: Row) => get<object, string, string>(result, 'properties[\'end at\'].date.start', '')
 
-const getHeader = (result: Row) => ({
+const getColor = (result: Row) => get<object, string, string>(result, 'properties.color.rich_text[0].plain_text', '')
+
+const getBackgroundStyle = (result: Row) => get<object, string, string>(result, 'properties.background.rich_text[0].plain_text', '')
+
+const getStyle = (result: Row) => ({
+  color: getColor(result),
+  background: getBackgroundStyle(result),
+})
+
+const getHeader = (result: Row): Header => ({
   id: result.id,
   label: getLabel(result),
   imageUrl: getImageUrl(result),
   priority: getPriority(result),
+  style: getStyle(result),
 })
 
-const getBackground = (result: Row) => ({
+const getBackground = (result: Row): Background => ({
   id: result.id,
   imageUrl: getImageUrl(result),
   priority: getPriority(result),
+  style: getStyle(result),
 })
 
-const getLink = (result: Row) => ({
+const getLink = (result: Row): Link => ({
   id: result.id,
   label: getLabel(result),
   imageUrl: getImageUrl(result),
   url: get<object, string, string>(result, 'properties.url.url', '0'),
   priority: getPriority(result),
+  style: getStyle(result),
 })
 
-const getFooter = (result: Row) => ({
+const getFooter = (result: Row): Footer => ({
   id: result.id,
   imageUrl: getImageUrl(result),
   url: get<object, string, string>(result, 'properties.url.url', '0'),
   priority: getPriority(result),
+  style: getStyle(result),
 })
 
 const isInSchedule = (result: Row) => {
@@ -66,7 +79,7 @@ const isInSchedule = (result: Row) => {
 }
 
 export const createLinkBio = (results: DataBase): LinkBio => {
-  let title: Header = {} as Header
+  let header: Header = {} as Header
   let background: Background = {} as Background
   let links: Link[] = []
   let footer: Footer[] = []
@@ -78,8 +91,8 @@ export const createLinkBio = (results: DataBase): LinkBio => {
 
     switch (type) {
       case 'header':
-        if (!title.priority || title.priority < getPriority(result)) {
-          title = getHeader(result)
+        if (!header.priority || header.priority < getPriority(result)) {
+          header = getHeader(result)
         }
         break;
       case 'background':
@@ -97,7 +110,7 @@ export const createLinkBio = (results: DataBase): LinkBio => {
   })
 
   return {
-    title,
+    header,
     background,
     links: links.sort((a, b) => b.priority - a.priority),
     footer: footer.sort((a, b) => b.priority - a.priority),
