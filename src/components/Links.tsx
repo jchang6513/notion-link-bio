@@ -8,7 +8,7 @@ export const Links = ({ links }: { links: Link[] } ) => {
       {links?.map((link) => (
         <a key={link.id} href={link.url} target="_blank">
           <div
-            className="bg-white p-4 px-24 mt-4 rounded-md text-center relative transition-all hover:scale-105"
+            className="bg-white p-4 px-24 mt-4 rounded-md text-center relative transition-all md:hover:scale-105"
             style={link.style}
           >
             {link.imageUrl && (
