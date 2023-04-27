@@ -1,38 +1,44 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Notion Link Bio
 
-## Getting Started
+This web app allows you to convert a Notion database into a responsive web design (RWD) page.
 
-First, run the development server:
+## Database Template
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+To use this app, you can start by creating a database with the following template: [Notion Link Bio Template](https://www.notion.so/made-by-chang/a15facc5bee540fa808ec678ebb49e06?v=2ae2b263b35041a7b9b618b4ffda733a&pvs=4).
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The template includes several properties, including:
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+- Type
+- Label
+- URL
+- Priority
+- Image
+- Start From
+- End At
+- Color
+- Background
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+| Row Type   | Label Property | URL Property | Priority Property | Image Uploads                                 | Schedule Properties | Style Properties                            |
+|------------|----------------|--------------|-------------------|-----------------------------------------------|---------------------|---------------------------------------------|
+| Header     | Yes            | No           | Yes               | Avatar                                        | No                  | Font Color, Background Color                |
+| Background | No             | No           | No                | Background Image                              | No                  | Font Color, Background Color                |
+| Link       | Yes            | Yes          | Yes               | Thumbnail                                     | Start Date, End Date | Font Color, Background Color                |
+| Footer     | No             | Yes          | Yes               | Icon                                          | No                  | Font Color, Background Color                |
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## How to Use
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+1. Create an integration on Notion by going to https://www.notion.com/my-integrations and clicking "Create New Integration." Follow the prompts to name your integration and generate a secret key.
 
-## Learn More
+2. Clone this repository and navigate to the project directory in your terminal.
 
-To learn more about Next.js, take a look at the following resources:
+3. Create a .env file in the project directory and add your Notion API secret key as follows:
+   ```
+   NOTION_INTEGRATION_SECRET=your-secret-key-here
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+4. Deploy the application to a hosting service such as Vercel, Heroku, or Netlify.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+5. Navigate to the deployed website with Notion database ID in your web browser.
+## Credits
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+This app was created by Yi-Wei Chang and uses the Notion API and Flaticon.
