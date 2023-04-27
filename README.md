@@ -20,10 +20,10 @@ The template includes several properties, including:
 
 | Row Type   | Label Property | URL Property | Priority Property | Image Uploads                                 | Schedule Properties | Style Properties                            |
 |------------|----------------|--------------|-------------------|-----------------------------------------------|---------------------|---------------------------------------------|
-| Header     | Yes            | No           | Yes               | Avatar                                        | No                  | Font Color, Background Color                |
-| Background | No             | No           | No                | Background Image                              | No                  | Font Color, Background Color                |
+| Header     | Yes            | No           | Yes               | Avatar                                        | Start Date, End Date | Font Color, Background Color                |
+| Background | No             | No           | Yes               | Background Image                              | Start Date, End Date | Font Color, Background Color                |
 | Link       | Yes            | Yes          | Yes               | Thumbnail                                     | Start Date, End Date | Font Color, Background Color                |
-| Footer     | No             | Yes          | Yes               | Icon                                          | No                  | Font Color, Background Color                |
+| Footer     | No             | Yes          | Yes               | Icon                                          | Start Date, End Date | Font Color, Background Color                |
 
 ## How to Use
 
