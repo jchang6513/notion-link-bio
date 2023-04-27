@@ -35,7 +35,7 @@ export default function Token(props: { linkBio: LinkBio }) {
       <Head>
         <title>{`${header.label}|notion-link-bio`}</title>
       </Head>
-      <div>
+      <div className="columns-md mx-3 min-h-screen">
         <HeaderComp header={header} />
         <Links links={links} />
         <FooterComp footer={footer} />

@@ -8,7 +8,7 @@ export const HeaderComp = ({ header }: { header: Header }) => {
       {header.imageUrl && (
         // eslint-disable-next-line @next/next/no-img-element
         <img
-          className="h-20 w-20 m-auto rounded-full mb-6"
+          className="h-16 w-16 m-auto rounded-full mb-6"
           src={header.imageUrl}
           alt="link.image"
         />
