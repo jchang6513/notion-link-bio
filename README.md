@@ -2,6 +2,8 @@
 
 This web app allows you to convert a Notion database into a responsive web design (RWD) page.
 
+[Sample Page](https://notion-link-bio.vercel.app/a15facc5bee540fa808ec678ebb49e06)
+
 ## Database Template
 
 To use this app, you can start by creating a database with the following template: [Notion Link Bio Template](https://www.notion.so/made-by-chang/a15facc5bee540fa808ec678ebb49e06?v=2ae2b263b35041a7b9b618b4ffda733a&pvs=4).
